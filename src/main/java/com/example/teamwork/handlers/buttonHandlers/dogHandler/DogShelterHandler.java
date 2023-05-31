@@ -1,0 +1,38 @@
+package com.example.teamwork.handlers.buttonHandlers.dogHandler;
+
+import com.example.teamwork.handlers.buttonHandlers.AbstractTelegramBotButtonHandler;
+import com.pengrad.telegrambot.TelegramBot;
+import com.pengrad.telegrambot.model.Update;
+import com.pengrad.telegrambot.model.request.InlineKeyboardButton;
+import com.pengrad.telegrambot.model.request.InlineKeyboardMarkup;
+import com.pengrad.telegrambot.request.SendMessage;
+import org.springframework.core.annotation.Order;
+import org.springframework.stereotype.Component;
+
+@Component
+@Order(1)
+public class DogShelterHandler extends AbstractTelegramBotButtonHandler {
+
+	public DogShelterHandler(TelegramBot telegramBot) {
+		super(telegramBot);
+	}
+
+	@Override
+	public boolean checkButton(Update update) {
+		return update.callbackQuery() != null && update.callbackQuery().data().equals("/dogShelter");
+	}
+
+	@Override
+	public void realizationButton(Update update) {
+		InlineKeyboardMarkup keyboardMarkup = new InlineKeyboardMarkup();
+		keyboardMarkup.addRow(
+				new InlineKeyboardButton("Информация о приюте").callbackData("/infoAboutDogShelter"),
+				new InlineKeyboardButton("Как взять питомца из приюта").callbackData("/howToAdoptDog"));
+		keyboardMarkup.addRow(
+				new InlineKeyboardButton("Прислать отчёт о питомце").callbackData("/dogShelterGetReport"),
+				new InlineKeyboardButton("Вызвать волонтёра").callbackData("/volunteerHelp"));
+		keyboardMarkup.addRow(new InlineKeyboardButton("Вернуться назад").callbackData("/comeBack"));
+		SendMessage sendMessage = new SendMessage(update.callbackQuery().from().id(), "Вы выбрали приют \"Пёсики\"");
+		this.telegramBot.execute(sendMessage.replyMarkup(keyboardMarkup));
+	}
+}
