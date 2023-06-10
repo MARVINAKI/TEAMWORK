@@ -25,13 +25,15 @@ public class DogShelterRegistrationHandler extends AbstractTelegramBotButtonHand
 	@Override
 	public void realizationButton(Update update) {
 		String information = """
-							Контактные данные охраны для звонка и регистрации 
-							ИЛИ онлайн отправка формы
-							ПРИМЕР ФОРМЫ отправки данных о машине для пропуска (update message)
+				   			Вы можете зарегестрировать своё автотранспортное средство для заезда на территорию приюта.
+				   			Перед заездом ознакомьтесь с рекомендациями по нахождению на территории приюта.
+							Контактные данные охраны для оформления пропуска:
+							8(347)111-11-11
+							8(347)222-22-22
 				""";
 		InlineKeyboardMarkup keyboardMarkup = new InlineKeyboardMarkup();
 		keyboardMarkup.addRow(
-				new InlineKeyboardButton("Вернуться назад").callbackData("/comeBack"));
+				new InlineKeyboardButton("Вернуться назад").callbackData("/infoAboutDogShelter"));
 		SendMessage sendMessage = new SendMessage(update.callbackQuery().from().id(), information);
 		this.telegramBot.execute(sendMessage.replyMarkup(keyboardMarkup));
 	}

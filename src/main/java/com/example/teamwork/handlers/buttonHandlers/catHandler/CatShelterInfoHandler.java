@@ -36,7 +36,7 @@ public class CatShelterInfoHandler extends AbstractTelegramBotButtonHandler {
 				""";
 		InlineKeyboardMarkup keyboardMarkup = new InlineKeyboardMarkup();
 		keyboardMarkup.addRow(
-				new InlineKeyboardButton("Информация о приюте").callbackData("/catShelterDescription"),
+				new InlineKeyboardButton("Описание").callbackData("/catShelterDescription"),
 				new InlineKeyboardButton("Регистрация").callbackData("/catShelterRegistration"));
 		keyboardMarkup.addRow(
 				new InlineKeyboardButton("Рекомендации").callbackData("/catShelterInRecommendations"),

@@ -24,15 +24,22 @@ public class DogShelterHandler extends AbstractTelegramBotButtonHandler {
 
 	@Override
 	public void realizationButton(Update update) {
+		String information = """
+							Вы выбрали собачий приют
+							Здесь вы можете получить подробную информацию о собачем приюте
+							Узнать как оформить все документы для усыновления питомца, получить информацию и рекомендации о бытовых вопросах сожительства
+							Отправить форму отчёта о питомце, взятом из приюта
+							Или получить помощь волонтёра, если у Вас остались какие-то нерешенные вопросы
+							Если хотите выбрать другой приют наберите "/start"
+				""";
 		InlineKeyboardMarkup keyboardMarkup = new InlineKeyboardMarkup();
 		keyboardMarkup.addRow(
 				new InlineKeyboardButton("Информация о приюте").callbackData("/infoAboutDogShelter"),
 				new InlineKeyboardButton("Как взять питомца из приюта").callbackData("/howToAdoptDog"));
 		keyboardMarkup.addRow(
 				new InlineKeyboardButton("Прислать отчёт о питомце").callbackData("/dogShelterGetReport"),
-				new InlineKeyboardButton("Вызвать волонтёра").callbackData("/volunteerHelp"));
-		keyboardMarkup.addRow(new InlineKeyboardButton("Вернуться назад").callbackData("/comeBack"));
-		SendMessage sendMessage = new SendMessage(update.callbackQuery().from().id(), "Вы выбрали приют \"Пёсики\"");
+				new InlineKeyboardButton("Вызвать волонтёра").callbackData("/dogShelterVolunteer"));
+		SendMessage sendMessage = new SendMessage(update.callbackQuery().from().id(), information);
 		this.telegramBot.execute(sendMessage.replyMarkup(keyboardMarkup));
 	}
 }

@@ -45,12 +45,12 @@ public class DogShelterPetTransferHandler extends AbstractTelegramBotButtonHandl
 				new InlineKeyboardButton("Рекомендации").callbackData("/dogShelterOutRecommendations"),
 				new InlineKeyboardButton("Кинологи").callbackData("/cynologists"));
 		keyboardMarkup.addRow(
-				new InlineKeyboardButton("Причины отказа").callbackData("/reasonForRefusal"),
+				new InlineKeyboardButton("Причины отказа").callbackData("/dogShelterReasonForRefusal"),
 				new InlineKeyboardButton("Обратная связь").callbackData("/dogShelterFeedback"));
 		keyboardMarkup.addRow(
-				new InlineKeyboardButton("Вызвать волонтёра").callbackData("/volunteerHelp"));
+				new InlineKeyboardButton("Вызвать волонтёра").callbackData("/dogShelterVolunteer"));
 		keyboardMarkup.addRow(
-				new InlineKeyboardButton("Вернуться назад").callbackData("/comeBack"));
+				new InlineKeyboardButton("Вернуться назад").callbackData("/dogShelter"));
 		SendMessage sendMessage = new SendMessage(update.callbackQuery().from().id(), information);
 		this.telegramBot.execute(sendMessage.replyMarkup(keyboardMarkup));
 	}

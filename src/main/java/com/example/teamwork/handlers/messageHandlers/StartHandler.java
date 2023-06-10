@@ -23,11 +23,17 @@ public class StartHandler extends AbstractTelegramBotMessageHandler {
 
 	@Override
 	public void realizationMessage(Update update) {
+		String information = """
+				   			Приветствуем Вас!
+							Мы - волонтёры муниципального приюта для бездомных животных "Новая жизнь" города Астана   			
+							Здесь Вы можете подарить новую жизнь одному или нескольким, большому или маленькому, но ищущему своего Человека и Дом, прекрасному питомцу!
+							Выберите интересующим Вас приют!
+				""";
 		InlineKeyboardMarkup keyboardMarkup = new InlineKeyboardMarkup();
 		keyboardMarkup.addRow(
-				new InlineKeyboardButton("Dog shelter").callbackData("/dogShelter"),
-				new InlineKeyboardButton("Cat shelter").callbackData("/catShelter"));
-		SendMessage sendMessage = new SendMessage(update.message().chat().id(), "It is work!");
+				new InlineKeyboardButton("Собачий приют").callbackData("/dogShelter"),
+				new InlineKeyboardButton("Кошачий приют").callbackData("/catShelter"));
+		SendMessage sendMessage = new SendMessage(update.message().chat().id(), information);
 		telegramBot.execute(sendMessage.replyMarkup(keyboardMarkup));
 
 	}

@@ -25,26 +25,24 @@ public class DogShelterInfoHandler extends AbstractTelegramBotButtonHandler {
 	@Override
 	public void realizationButton(Update update) {
 		String information = """
-							Приют для собак Пёсики
-							Приветсвие пользователя
-							Описание о приюте
-							*(К)(БД?) Выдать расписание работы приюта и адрес, схему проезда (кнопки и возможность отправки изображения со схемой)
-							*(К)(БД) Контактные данные охраны для оформления пропуска на машину (кнопка и дальнейшая форма для машины)
-							*(К) Общие рекомендации о технике безопасности на территории приюта (кнопка на дальнейшие инструкции)
-							*(К)(БД) Принять и записать контактные данные для связи (кнопка на форму для приема контактных данных)
-							*(К)(О) Если нет нужного поля, то есть возможность вызвать волонтёра (кнопка на вызов волонтёра)
+				   			Выберите интресующий Вас раздел:
+				(( Описание )) - узнать график работы, адрес приюта, схема проезда;
+				(( Регистрация )) - получить контактные данные охраны для оформления пропуска на машину;
+				(( Рекомендации )) - ознакомиться с общими рекомендациями о технике безопасности при нахождении на территории приюта;
+				(( Обратная связь )) - вы можете оставить свои данные для того чтобы мы связались с вами;
+				(( Вызвать волонтёра )) - если Вы не смогли найти ответы на свои вопросы, то можно позвать волонтёра.												
 				""";
 		InlineKeyboardMarkup keyboardMarkup = new InlineKeyboardMarkup();
 		keyboardMarkup.addRow(
-				new InlineKeyboardButton("Информация о приюте").callbackData("/dogShelterDescription"),
+				new InlineKeyboardButton("Описание").callbackData("/dogShelterDescription"),
 				new InlineKeyboardButton("Регистрация").callbackData("/dogShelterRegistration"));
 		keyboardMarkup.addRow(
 				new InlineKeyboardButton("Рекомендации").callbackData("/dogShelterInRecommendations"),
 				new InlineKeyboardButton("Обратная связь").callbackData("/dogShelterFeedback"));
 		keyboardMarkup.addRow(
-				new InlineKeyboardButton("Вызвать волонтёра").callbackData("/volunteerHelp"));
+				new InlineKeyboardButton("Вызвать волонтёра").callbackData("/dogShelterVolunteer"));
 		keyboardMarkup.addRow(
-				new InlineKeyboardButton("Вернуться назад").callbackData("/comeBack"));
+				new InlineKeyboardButton("Вернуться назад").callbackData("/dogShelter"));
 		SendMessage sendMessage = new SendMessage(update.callbackQuery().from().id(), information);
 		this.telegramBot.execute(sendMessage.replyMarkup(keyboardMarkup));
 	}

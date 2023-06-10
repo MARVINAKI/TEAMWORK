@@ -25,11 +25,11 @@ public class DogShelterFeedbackHandler extends AbstractTelegramBotButtonHandler 
 	@Override
 	public void realizationButton(Update update) {
 		String information = """
-							Пример формы контактных данных клиента
-							Приём формы (update message) и запись в БД
+							Укажите контактые данные для обратной связи в формате
+							Пример: Иванов Иван, 89173624439, ivanov@gmail.com, звонить после 18:00
 				""";
 		InlineKeyboardMarkup keyboardMarkup = new InlineKeyboardMarkup();
-		keyboardMarkup.addRow(new InlineKeyboardButton("Вернуться назад").callbackData("/comeBack"));
+		keyboardMarkup.addRow(new InlineKeyboardButton("Вернуться назад").callbackData("/infoAboutDogShelter"));
 		SendMessage sendMessage = new SendMessage(update.callbackQuery().from().id(), information);
 		this.telegramBot.execute(sendMessage.replyMarkup(keyboardMarkup));
 	}

@@ -29,7 +29,7 @@ public class DogShelterGetReportHandler extends AbstractTelegramBotButtonHandler
 							БД для кощачего и собачего приюта разные!
 				""";
 		InlineKeyboardMarkup keyboardMarkup = new InlineKeyboardMarkup();
-		keyboardMarkup.addRow(new InlineKeyboardButton("Вернуться назад").callbackData("/comeBack"));
+		keyboardMarkup.addRow(new InlineKeyboardButton("Вернуться назад").callbackData("/dogShelter"));
 		SendMessage sendMessage = new SendMessage(update.callbackQuery().from().id(), information);
 		this.telegramBot.execute(sendMessage.replyMarkup(keyboardMarkup));
 	}

@@ -1,26 +1,35 @@
 package com.example.teamwork.model;
 
-import com.example.teamwork.model.ENUM.Disability;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import lombok.NoArgsConstructor;
+import javax.persistence.*;
+
+import lombok.*;
 
 
-@Entity(name = "dogs")
+
+@Entity
+@Table(name = "dogs")
+@Getter
+@Setter
 @NoArgsConstructor
-public class Dog extends Animal {
+public class Dog {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
 	private Long id;
+	@Column(name = "name")
+	private String name;
+	@Column(name = "age")
+	private Integer age;
+	@Column(name = "disability")
+	private String disability;
+	@Column(name = "comments")
+	private String comments;
 
-	public Dog(String name, Integer age, Disability disability, String comments) {
-		super(name, age, disability, comments);
-	}
-
-	public Long getId() {
-		return id;
+	public Dog(String name, Integer age, String disability, String comments) {
+		this.name = name;
+		this.age = age;
+		this.disability = disability;
+		this.comments = comments;
 	}
 }
