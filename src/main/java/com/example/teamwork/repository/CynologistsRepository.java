@@ -1,10 +1,10 @@
 package com.example.teamwork.repository;
 
-import com.example.teamwork.model.Dog;
+import com.example.teamwork.model.Cynologist;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface DogShelterRepository extends JpaRepository<Dog, Long> {
+public interface CynologistsRepository extends JpaRepository<Cynologist, Long> {
 
 }

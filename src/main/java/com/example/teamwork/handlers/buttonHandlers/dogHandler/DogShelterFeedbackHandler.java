@@ -26,7 +26,8 @@ public class DogShelterFeedbackHandler extends AbstractTelegramBotButtonHandler 
 	public void realizationButton(Update update) {
 		String information = """
 							Укажите контактые данные для обратной связи в формате
-							Пример: Иванов Иван, 89173624439, ivanov@gmail.com, звонить после 18:00
+							Пример:
+							Иванов Иван 89173624439 ivanov@gmail.com звонить после 18:00
 				""";
 		InlineKeyboardMarkup keyboardMarkup = new InlineKeyboardMarkup();
 		keyboardMarkup.addRow(new InlineKeyboardButton("Вернуться назад").callbackData("/infoAboutDogShelter"));

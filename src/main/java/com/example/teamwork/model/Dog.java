@@ -2,6 +2,7 @@ package com.example.teamwork.model;
 
 import javax.persistence.*;
 
+import com.example.teamwork.DTO.DogDTO;
 import lombok.*;
 
 
@@ -11,6 +12,8 @@ import lombok.*;
 @Getter
 @Setter
 @NoArgsConstructor
+@ToString
+@EqualsAndHashCode
 public class Dog {
 
 	@Id
@@ -31,5 +34,11 @@ public class Dog {
 		this.age = age;
 		this.disability = disability;
 		this.comments = comments;
+	}
+
+	public static DogDTO convertToDogDTO(Dog dog) {
+		DogDTO dogDTO = new DogDTO(dog.getName(), dog.getAge(), dog.getDisability(), dog.getComments());
+		dogDTO.setId(dog.getId());
+		return dogDTO;
 	}
 }

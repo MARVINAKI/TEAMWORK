@@ -9,6 +9,11 @@ import com.pengrad.telegrambot.request.SendMessage;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
+/**
+ * Обработчик кнопки "Регисрации авто" в telegram bot приюта для кошек
+ *
+ * @author Kostya
+ */
 @Component
 @Order(12)
 public class CatShelterRegistrationHandler extends AbstractTelegramBotButtonHandler {
@@ -17,21 +22,36 @@ public class CatShelterRegistrationHandler extends AbstractTelegramBotButtonHand
 		super(telegramBot);
 	}
 
+	/**
+	 * Проверка на нажатие именно нашей кнопки,
+	 * <b>true</b> если соответсвует и <b>false</b> если нет.
+	 *
+	 * @param update сообщение в telegram bot от пользователя.
+	 * @return <b>true / false</b>
+	 */
 	@Override
 	public boolean checkButton(Update update) {
 		return update.callbackQuery() != null && update.callbackQuery().data().equals("/catShelterRegistration");
 	}
 
+	/**
+	 * Реализация функционала нашей кнопки.
+	 * Выдаёт пользователю актуальные контактные данные.
+	 *
+	 * @param update сообщение в telegram bot от пользователя.
+	 */
 	@Override
 	public void realizationButton(Update update) {
 		String information = """
-							Контактные данные охраны для звонка и регистрации
-							ИЛИ онлайн отправка формы
-							ПРИМЕР ФОРМЫ отправки данных о машине для пропуска (update message)
+				   			Вы можете зарегестрировать своё автотранспортное средство для заезда на территорию приюта.
+				   			Перед заездом ознакомьтесь с рекомендациями по нахождению на территории приюта.
+							Контактные данные охраны для оформления пропуска:
+							8(347)333-33-33
+							8(347)555-55-55
 				""";
 		InlineKeyboardMarkup keyboardMarkup = new InlineKeyboardMarkup();
 		keyboardMarkup.addRow(
-				new InlineKeyboardButton("Вернуться назад").callbackData("/comeBack"));
+				new InlineKeyboardButton("Вернуться назад").callbackData("/infoAboutCatShelter"));
 		SendMessage sendMessage = new SendMessage(update.callbackQuery().from().id(), information);
 		this.telegramBot.execute(sendMessage.replyMarkup(keyboardMarkup));
 	}

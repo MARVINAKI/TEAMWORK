@@ -33,6 +33,10 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
 		return UpdatesListener.CONFIRMED_UPDATES_ALL;
 	}
 
+	/**
+	 * Метод поиска и реализации нужного текстового обработчика telegram bot.
+	 * @param update сообщение пользователя для обработки
+	 */
 	private void realizationMessageHandlers(Update update) {
 		for (TelegramBotMessageHandler messageHandler : messageHandlers) {
 			if (messageHandler.checkMessage(update)) {
@@ -42,6 +46,10 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
 		}
 	}
 
+	/**
+	 * Метод поиска и реализации нужного обработчика кнопок telegram bot.
+	 * @param update сообщение пользователя для обработки
+	 */
 	private void realizationButtonHandlers(Update update) {
 		for (TelegramBotButtonHandler buttonHandler : buttonHandlers) {
 			if (buttonHandler.checkButton(update)) {

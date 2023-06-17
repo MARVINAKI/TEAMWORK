@@ -2,6 +2,7 @@ package com.example.teamwork.model;
 
 import javax.persistence.*;
 
+import com.example.teamwork.DTO.CatDTO;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,11 +12,11 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Cat{
+public class Cat {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id", nullable = true)
+	@Column(name = "id")
 	private Long id;
 	@Column(name = "name")
 	private String name;
@@ -31,5 +32,11 @@ public class Cat{
 		this.age = age;
 		this.disability = disability;
 		this.comments = comments;
+	}
+
+	public static CatDTO convertToCatDTO(Cat cat) {
+		CatDTO catDTO = new CatDTO(cat.getName(), cat.getAge(), cat.getDisability(), cat.getComments());
+		catDTO.setId(cat.getId());
+		return catDTO;
 	}
 }

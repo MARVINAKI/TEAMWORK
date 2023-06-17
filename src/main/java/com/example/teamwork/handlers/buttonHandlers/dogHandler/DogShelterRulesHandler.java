@@ -14,6 +14,11 @@ import org.springframework.util.ResourceUtils;
 
 import java.io.File;
 
+/**
+ * Обработчик кнопки "Правила" в telegram bot приюта для кошек
+ *
+ * @author Kostya
+ */
 @Component
 @Order(16)
 public class DogShelterRulesHandler extends AbstractTelegramBotButtonHandler {
@@ -25,11 +30,25 @@ public class DogShelterRulesHandler extends AbstractTelegramBotButtonHandler {
 		super(telegramBot);
 	}
 
+	/**
+	 * Проверка на нажатие именно нашей кнопки,
+	 * <b>true</b> если соответсвует и <b>false</b> если нет.
+	 *
+	 * @param update сообщение в telegram bot от пользователя.
+	 * @return <b>true / false</b>
+	 */
 	@Override
 	public boolean checkButton(Update update) {
 		return update.callbackQuery() != null && update.callbackQuery().data().equals("/dogShelterRules");
 	}
 
+	/**
+	 * Реализация функционала нашей кнопки.
+	 * Выдаёт пользователю актуальные документы.
+	 * Предлагает пользователю вернуться в предыдущее меню.
+	 *
+	 * @param update сообщение в telegram bot от пользователя.
+	 */
 	@SneakyThrows
 	@Override
 	public void realizationButton(Update update) {

@@ -1,6 +1,8 @@
 package com.example.teamwork.model;
 
 import javax.persistence.*;
+
+import com.example.teamwork.DTO.CynologistDTO;
 import lombok.*;
 
 @Entity(name = "cynologists")
@@ -31,5 +33,11 @@ public class Cynologist {
 		this.phoneNumber = phoneNumber;
 		this.eMail = eMail;
 		this.comments = comments;
+	}
+
+	public static CynologistDTO convertToCynologistDTO(Cynologist cynologist) {
+		CynologistDTO cynologistDTO = new CynologistDTO(cynologist.getFullName(), cynologist.getExperience(), cynologist.getPhoneNumber(), cynologist.getEMail(), cynologist.getComments());
+		cynologistDTO.setId(cynologist.getId());
+		return cynologistDTO;
 	}
 }

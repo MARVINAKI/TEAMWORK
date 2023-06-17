@@ -1,10 +1,9 @@
 package com.example.teamwork.service;
 
+import com.example.teamwork.DTO.DogDTO;
 import com.example.teamwork.model.Dog;
 import com.example.teamwork.repository.DogShelterRepository;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class DogShelterService {
@@ -14,27 +13,37 @@ public class DogShelterService {
 		this.dogShelterRepository = dogShelterRepository;
 	}
 
-	public void save(Dog dog) {
-		dogShelterRepository.save(dog);
+	/**
+	 * Метод используется сотрудниками приюта для занесения данных о питомце в БД, в процессе происходит преобразование объектов.
+	 * {@link org.springframework.data.jpa.repository.JpaRepository#save(Object)}
+	 *
+	 * @param dogDTO класс DTO, который преобразуется в основной класс <i><b>Dog</b></i>
+	 */
+	public void save(DogDTO dogDTO) {
+		dogShelterRepository.save(DogDTO.convertToDog(dogDTO));
 	}
-//
-//	public Dog findDogById(Long id) {
-//		return dogShelterRepository.getById(id);
-//	}
-//
-//	public Dog findDogByName(String name) {
-//		return dogShelterRepository.findByName(name);
-//	}
-//
-//	public List<Dog> findAllDog() {
-//		return dogShelterRepository.findAll();
-//	}
-//
-//	public void deleteById(Long id) {
-//		dogShelterRepository.deleteById(id);
-//	}
-//
-//	public void deleteByName(String name) {
-//		dogShelterRepository.deleteByName(name);
-//	}
+
+	/**
+	 * Метод поиска объекта по идентификационному номеру в нашей БД (в процессе происходит преобразование объектов).
+	 * {@link org.springframework.data.jpa.repository.JpaRepository#getReferenceById(Object)}
+	 *
+	 * @param id идентификационный номер объекта для поиска.
+	 * @return искомый объект.
+	 * @throws javax.persistence.EntityNotFoundException при отсутствии объекта в БД.
+	 */
+	public DogDTO getById(Long id) {
+		return Dog.convertToDogDTO(dogShelterRepository.getReferenceById(id));
+	}
+
+	/**
+	 * Метод удаления объекта по идентификационному номеру из нашей БД.
+	 * {@link org.springframework.data.jpa.repository.JpaRepository#deleteById(Object)}
+	 *
+	 * @param id идентификационный номер объекта для удаления.
+	 * @throws org.springframework.dao.EmptyResultDataAccessException при отсутсвии объекта удаления в БД.
+	 */
+	public void deleteById(Long id) {
+		dogShelterRepository.deleteById(id);
+	}
+
 }

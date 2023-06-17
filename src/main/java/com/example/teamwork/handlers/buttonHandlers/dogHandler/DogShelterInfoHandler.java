@@ -9,6 +9,11 @@ import com.pengrad.telegrambot.request.SendMessage;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
+/**
+ * Обработчик кнопки информации о приюте для собак в telegram bot
+ *
+ * @author Kostya
+ */
 @Component
 @Order(2)
 public class DogShelterInfoHandler extends AbstractTelegramBotButtonHandler {
@@ -17,17 +22,29 @@ public class DogShelterInfoHandler extends AbstractTelegramBotButtonHandler {
 		super(telegramBot);
 	}
 
+	/**
+	 * Проверка на нажатие именно нашей кнопки,
+	 * <b>true</b> если соответсвует и <b>false</b> если нет.
+	 *
+	 * @param update сообщение в telegram bot от пользователя.
+	 * @return <b>true / false</b>
+	 */
 	@Override
 	public boolean checkButton(Update update) {
 		return update.callbackQuery() != null && update.callbackQuery().data().equals("/infoAboutDogShelter");
 	}
 
+	/**
+	 * Реализация функционала нашей кнопки.
+	 *
+	 * @param update сообщение в telegram bot от пользователя.
+	 */
 	@Override
 	public void realizationButton(Update update) {
 		String information = """
 				   			Выберите интресующий Вас раздел:
-				(( Описание )) - узнать график работы, адрес приюта, схема проезда;
-				(( Регистрация )) - получить контактные данные охраны для оформления пропуска на машину;
+				<b>Описание</b> - узнать график работы, адрес приюта, схема проезда;
+				***Регистрация*** - получить контактные данные охраны для оформления пропуска на машину;
 				(( Рекомендации )) - ознакомиться с общими рекомендациями о технике безопасности при нахождении на территории приюта;
 				(( Обратная связь )) - вы можете оставить свои данные для того чтобы мы связались с вами;
 				(( Вызвать волонтёра )) - если Вы не смогли найти ответы на свои вопросы, то можно позвать волонтёра.												

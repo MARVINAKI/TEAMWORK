@@ -9,6 +9,11 @@ import com.pengrad.telegrambot.request.SendMessage;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
+/**
+ * Обработчик кнопки "Главного меню" в telegram bot приюта для собак
+ *
+ * @author Kostya
+ */
 @Component
 @Order(1)
 public class DogShelterHandler extends AbstractTelegramBotButtonHandler {
@@ -17,11 +22,24 @@ public class DogShelterHandler extends AbstractTelegramBotButtonHandler {
 		super(telegramBot);
 	}
 
+	/**
+	 * Проверка на нажатие именно нашей кнопки,
+	 * <b>true</b> если соответсвует и <b>false</b> если нет.
+	 *
+	 * @param update сообщение в telegram bot от пользователя.
+	 * @return <b>true / false</b>
+	 */
 	@Override
 	public boolean checkButton(Update update) {
 		return update.callbackQuery() != null && update.callbackQuery().data().equals("/dogShelter");
 	}
 
+	/**
+	 * Реализация функционала нашей кнопки.
+	 * Выдаёт пользователю основные пункты-возможности.
+	 *
+	 * @param update сообщение в telegram bot от пользователя.
+	 */
 	@Override
 	public void realizationButton(Update update) {
 		String information = """

@@ -15,6 +15,11 @@ import org.springframework.util.ResourceUtils;
 
 import java.io.File;
 
+/**
+ * Обработчик кнопки "Описание" в telegram bot приюта для собак
+ *
+ * @author Kostya
+ */
 @Component
 @Order(4)
 public class DogShelterDescription extends AbstractTelegramBotButtonHandler {
@@ -26,18 +31,32 @@ public class DogShelterDescription extends AbstractTelegramBotButtonHandler {
 		super(telegramBot);
 	}
 
+	/**
+	 * Проверка на нажатие именно нашей кнопки,
+	 * <b>true</b> если соответсвует и <b>false</b> если нет.
+	 *
+	 * @param update сообщение в telegram bot от пользователя.
+	 * @return <b>true / false</b>
+	 */
 	@Override
 	public boolean checkButton(Update update) {
 		return update.callbackQuery() != null && update.callbackQuery().data().equals("/dogShelterDescription");
 	}
 
+	/**
+	 * Реализация нашей кнопки.
+	 * Выдаёт пользователю график работы приюта и адрес, текстовый, а также дополнительно в
+	 * виде картинки/схемы.
+	 * Предлагает пользователю вернуться в предыдущее меню.
+	 *
+	 * @param update сообщение в telegram bot от пользователя.
+	 */
 	@SneakyThrows
 	@Override
 	public void realizationButton(Update update) {
 		String information = """
-							График работы приюта: ежедневно, с 9:00 по 20:00
+							График работы приюта: ежедневно, с 9:00 по 20:00, без перерыва
 							Адрес приюта: г.Астана, ул.Александра Солженицына, 23Ас1
-							ДОПОЛНИТЕЛЬНО: описание нюнсов, объезды, если такое имеется...
 				""";
 		File image = ResourceUtils.getFile(pathToFile + "AddressDogShelter.jpg");
 		InlineKeyboardMarkup keyboardMarkup = new InlineKeyboardMarkup();

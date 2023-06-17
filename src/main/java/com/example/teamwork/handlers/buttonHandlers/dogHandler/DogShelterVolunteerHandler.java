@@ -1,6 +1,7 @@
 package com.example.teamwork.handlers.buttonHandlers.dogHandler;
 
 import com.example.teamwork.handlers.buttonHandlers.AbstractTelegramBotButtonHandler;
+import com.example.teamwork.service.VolunteerCallService;
 import com.pengrad.telegrambot.TelegramBot;
 import com.pengrad.telegrambot.model.Update;
 import com.pengrad.telegrambot.model.request.InlineKeyboardButton;
@@ -13,8 +14,10 @@ import org.springframework.stereotype.Component;
 @Order(26)
 public class DogShelterVolunteerHandler extends AbstractTelegramBotButtonHandler {
 
-	public DogShelterVolunteerHandler(TelegramBot telegramBot) {
+	private final VolunteerCallService volunteerCallService;
+	public DogShelterVolunteerHandler(TelegramBot telegramBot, VolunteerCallService volunteerCallService) {
 		super(telegramBot);
+		this.volunteerCallService = volunteerCallService;
 	}
 
 	@Override
@@ -25,9 +28,10 @@ public class DogShelterVolunteerHandler extends AbstractTelegramBotButtonHandler
 	@Override
 	public void realizationButton(Update update) {
 		String information = """
-							Реализация связи клиент - волонтёр
-							Либо контакты волонтёра, либо отправка сообщения волонтёру с данными клиента или ещё что-то...
+							Мы отправили запрос на консультацию с волонтёром!
+							С вами скоро свяжутся через telegram!
 				""";
+		volunteerCallService.registrationVolunteerCall(update.callbackQuery().from().id());
 		InlineKeyboardMarkup keyboardMarkup = new InlineKeyboardMarkup();
 		keyboardMarkup.addRow(new InlineKeyboardButton("Вернуться назад").callbackData("/dogShelter"));
 		SendMessage sendMessage = new SendMessage(update.callbackQuery().from().id(), information);

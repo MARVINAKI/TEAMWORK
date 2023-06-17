@@ -5,6 +5,7 @@ import com.pengrad.telegrambot.TelegramBot;
 import com.pengrad.telegrambot.model.Update;
 import com.pengrad.telegrambot.model.request.InlineKeyboardButton;
 import com.pengrad.telegrambot.model.request.InlineKeyboardMarkup;
+import com.pengrad.telegrambot.model.request.ParseMode;
 import com.pengrad.telegrambot.request.SendMessage;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
@@ -25,7 +26,14 @@ public class DogShelterReasonForRefusalHandler extends AbstractTelegramBotButton
 	@Override
 	public void realizationButton(Update update) {
 		String information = """
-							Выдать список возможных причин для отказа в выдаче питомца
+							Возможные причины отказа в выдаче питомца:
+							- Причина 1;
+							- Причина 2;
+							- Причина 3;
+							- Причина 4;
+							- Причина 5;
+							- Причина 6;
+							- Причина 7;
 				""";
 		InlineKeyboardMarkup keyboardMarkup = new InlineKeyboardMarkup();
 		keyboardMarkup.addRow(
