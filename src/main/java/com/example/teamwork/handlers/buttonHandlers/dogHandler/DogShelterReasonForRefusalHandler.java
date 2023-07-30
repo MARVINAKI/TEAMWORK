@@ -5,13 +5,10 @@ import com.pengrad.telegrambot.TelegramBot;
 import com.pengrad.telegrambot.model.Update;
 import com.pengrad.telegrambot.model.request.InlineKeyboardButton;
 import com.pengrad.telegrambot.model.request.InlineKeyboardMarkup;
-import com.pengrad.telegrambot.model.request.ParseMode;
 import com.pengrad.telegrambot.request.SendMessage;
-import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 @Component
-@Order(21)
 public class DogShelterReasonForRefusalHandler extends AbstractTelegramBotButtonHandler {
 
 	public DogShelterReasonForRefusalHandler(TelegramBot telegramBot) {

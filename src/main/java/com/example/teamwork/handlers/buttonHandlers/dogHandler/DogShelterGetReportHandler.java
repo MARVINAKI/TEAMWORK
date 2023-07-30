@@ -6,11 +6,9 @@ import com.pengrad.telegrambot.model.Update;
 import com.pengrad.telegrambot.model.request.InlineKeyboardButton;
 import com.pengrad.telegrambot.model.request.InlineKeyboardMarkup;
 import com.pengrad.telegrambot.request.SendMessage;
-import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 @Component
-@Order(22)
 public class DogShelterGetReportHandler extends AbstractTelegramBotButtonHandler {
 
 	public DogShelterGetReportHandler(TelegramBot telegramBot) {
@@ -25,8 +23,14 @@ public class DogShelterGetReportHandler extends AbstractTelegramBotButtonHandler
 	@Override
 	public void realizationButton(Update update) {
 		String information = """
-							Проработать отчета о питомце: отправка, получение, обработка, уведомления, файлы, БД и тд
-							БД для кощачего и собачего приюта разные!
+				 					Форма ежедневного отчёта.
+				 	В течение месяца Вы должны присылать информацию о том, как животное чувствует себя на новом месте.
+				 	В ежедневный отчёт входит следующая информация:
+					- Фото животного.
+					- Рацион животного.
+				  	- Общее самочувствие и привыкание к новому месту.
+				  	- Изменение в поведении: отказ от старых привычек, приобретение новых.
+				  	Отчёт нужно присылать каждый день, ограничений в сутках по времени сдачи отчёта нет.
 				""";
 		InlineKeyboardMarkup keyboardMarkup = new InlineKeyboardMarkup();
 		keyboardMarkup.addRow(new InlineKeyboardButton("Вернуться назад").callbackData("/dogShelter"));

@@ -9,7 +9,6 @@ import com.pengrad.telegrambot.request.SendMessage;
 import com.pengrad.telegrambot.request.SendPhoto;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ResourceUtils;
 
@@ -21,7 +20,6 @@ import java.io.File;
  * @author Kostya
  */
 @Component
-@Order(4)
 public class DogShelterDescription extends AbstractTelegramBotButtonHandler {
 
 	@Value("${image.file.path}")

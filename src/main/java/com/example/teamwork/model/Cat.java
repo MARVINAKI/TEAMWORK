@@ -1,17 +1,18 @@
 package com.example.teamwork.model;
 
-import javax.persistence.*;
+import com.example.teamwork.DTO.cat.CatDTO;
+import com.example.teamwork.enums.Disability;
+import lombok.*;
 
-import com.example.teamwork.DTO.CatDTO;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "cats")
 @NoArgsConstructor
 @Getter
 @Setter
+@EqualsAndHashCode(exclude = "id")
+@ToString
 public class Cat {
 
 	@Id
@@ -23,20 +24,28 @@ public class Cat {
 	@Column(name = "age")
 	private Integer age;
 	@Column(name = "disability")
-	private String disability;
+	@Enumerated(EnumType.STRING)
+	private Disability disability;
 	@Column(name = "comments")
 	private String comments;
 
-	public Cat(String name, Integer age, String disability, String comments) {
+	public Cat(String name, Integer age, Disability disability, String comments) {
 		this.name = name;
 		this.age = age;
 		this.disability = disability;
 		this.comments = comments;
 	}
 
-	public static CatDTO convertToCatDTO(Cat cat) {
-		CatDTO catDTO = new CatDTO(cat.getName(), cat.getAge(), cat.getDisability(), cat.getComments());
-		catDTO.setId(cat.getId());
-		return catDTO;
+	@OneToOne(mappedBy = "cat", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+	private CatRegister catRegister;
+
+	public static CatDTO convert(Cat cat) {
+		return new CatDTO(
+				cat.getId(),
+				cat.getName(),
+				cat.getAge(),
+				cat.getDisability(),
+				cat.getComments()
+		);
 	}
 }

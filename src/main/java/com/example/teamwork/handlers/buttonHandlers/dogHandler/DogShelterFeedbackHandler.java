@@ -6,11 +6,9 @@ import com.pengrad.telegrambot.model.Update;
 import com.pengrad.telegrambot.model.request.InlineKeyboardButton;
 import com.pengrad.telegrambot.model.request.InlineKeyboardMarkup;
 import com.pengrad.telegrambot.request.SendMessage;
-import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 @Component
-@Order(7)
 public class DogShelterFeedbackHandler extends AbstractTelegramBotButtonHandler {
 
 	public DogShelterFeedbackHandler(TelegramBot telegramBot) {
@@ -25,7 +23,7 @@ public class DogShelterFeedbackHandler extends AbstractTelegramBotButtonHandler 
 	@Override
 	public void realizationButton(Update update) {
 		String information = """
-							Укажите контактые данные для обратной связи в формате
+							Укажите контактые данные для обратной связи в формате и нажмите отправить
 							Пример:
 							Иванов Иван 89173624439 ivanov@gmail.com звонить после 18:00
 				""";

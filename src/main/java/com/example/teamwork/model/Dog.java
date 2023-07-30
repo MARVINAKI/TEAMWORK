@@ -1,10 +1,10 @@
 package com.example.teamwork.model;
 
-import javax.persistence.*;
-
-import com.example.teamwork.DTO.DogDTO;
+import com.example.teamwork.DTO.dog.DogDTO;
+import com.example.teamwork.enums.Disability;
 import lombok.*;
 
+import javax.persistence.*;
 
 
 @Entity
@@ -13,7 +13,7 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 @ToString
-@EqualsAndHashCode
+@EqualsAndHashCode(exclude = "id")
 public class Dog {
 
 	@Id
@@ -25,20 +25,28 @@ public class Dog {
 	@Column(name = "age")
 	private Integer age;
 	@Column(name = "disability")
-	private String disability;
+	@Enumerated(EnumType.STRING)
+	private Disability disability;
 	@Column(name = "comments")
 	private String comments;
 
-	public Dog(String name, Integer age, String disability, String comments) {
+	public Dog(String name, Integer age, Disability disability, String comments) {
 		this.name = name;
 		this.age = age;
 		this.disability = disability;
 		this.comments = comments;
 	}
 
-	public static DogDTO convertToDogDTO(Dog dog) {
-		DogDTO dogDTO = new DogDTO(dog.getName(), dog.getAge(), dog.getDisability(), dog.getComments());
-		dogDTO.setId(dog.getId());
-		return dogDTO;
+	@OneToOne(mappedBy = "dog", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+	private DogRegister dogRegister;
+
+	public static DogDTO convert(Dog dog) {
+		return new DogDTO(
+				dog.getId(),
+				dog.getName(),
+				dog.getAge(),
+				dog.getDisability(),
+				dog.getComments()
+		);
 	}
 }

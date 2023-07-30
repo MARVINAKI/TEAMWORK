@@ -5,11 +5,9 @@ import com.pengrad.telegrambot.model.Update;
 import com.pengrad.telegrambot.model.request.InlineKeyboardButton;
 import com.pengrad.telegrambot.model.request.InlineKeyboardMarkup;
 import com.pengrad.telegrambot.request.SendMessage;
-import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 @Component
-@Order(1)
 public class StartHandler extends AbstractTelegramBotMessageHandler {
 
 	public StartHandler(TelegramBot telegramBot) {
@@ -18,7 +16,7 @@ public class StartHandler extends AbstractTelegramBotMessageHandler {
 
 	@Override
 	public boolean checkMessage(Update update) {
-		return update.message() != null && update.message().text().trim().equalsIgnoreCase("/start");
+		return update.message() != null && "/start".equalsIgnoreCase(update.message().text());
 	}
 
 	@Override

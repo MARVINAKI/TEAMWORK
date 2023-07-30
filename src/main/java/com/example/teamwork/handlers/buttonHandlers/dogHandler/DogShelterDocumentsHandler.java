@@ -8,7 +8,6 @@ import com.pengrad.telegrambot.model.request.InlineKeyboardMarkup;
 import com.pengrad.telegrambot.request.SendDocument;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ResourceUtils;
 
@@ -20,7 +19,6 @@ import java.io.File;
  * @author Kostya
  */
 @Component
-@Order(17)
 public class DogShelterDocumentsHandler extends AbstractTelegramBotButtonHandler {
 
 	@Value("${documents.file.path}")
