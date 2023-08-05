@@ -20,6 +20,9 @@ public class ReportsTimer {
 		this.dogRegisterRepository = dogRegisterRepository;
 	}
 
+	/**
+	 *	Класс-таймер с одной функцией - оповещением пользователя о просрочке по отчётам
+	 */
 	@Scheduled(cron = "30 30 20 * * ?")
 	public void reportReminder() {
 		dogRegisterRepository.findAll().stream()

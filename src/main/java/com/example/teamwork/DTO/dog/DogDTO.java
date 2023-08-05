@@ -1,6 +1,6 @@
 package com.example.teamwork.DTO.dog;
 
-import com.example.teamwork.enums.Disability;
+import com.example.teamwork.constant.Disability;
 import lombok.*;
 
 @Getter

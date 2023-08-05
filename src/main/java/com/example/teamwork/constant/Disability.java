@@ -1,4 +1,4 @@
-package com.example.teamwork.enums;
+package com.example.teamwork.constant;
 
 public enum Disability {
 	MOVEMENT("Передвижение"),

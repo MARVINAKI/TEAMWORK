@@ -1,6 +1,7 @@
 package com.example.teamwork.service.dog;
 
 import com.example.teamwork.DTO.dog.DogVolunteerCallDTO;
+import com.example.teamwork.handlers.buttonHandlers.VolunteerHandler;
 import com.example.teamwork.model.DogVolunteer;
 import com.example.teamwork.model.DogVolunteerCall;
 import com.example.teamwork.repository.dog.DogVolunteerCallRepository;
@@ -24,7 +25,7 @@ public class DogVolunteerCallService {
 	}
 
 	/**
-	 * Метод реализуется в обработчике {@link com.example.teamwork.handlers.buttonHandlers.dogHandler.DogShelterVolunteerHandler} для
+	 * Метод реализуется в обработчике {@link VolunteerHandler} для
 	 * занесения запроса на обратную связь с клиентом в нашу БД. В процессе выполнения, назначается ответственный волонтёр приюта и время
 	 * поступления запроса, который будет обрабатывать постувший запрос. Волонтёр назначается случайным образом из списка доступных волонтёров (выборка волонтёров из БД).
 	 * {@link JpaRepository#findAll()}

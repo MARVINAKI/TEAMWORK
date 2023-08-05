@@ -1,7 +1,7 @@
 package com.example.teamwork.controller.dog;
 
 import com.example.teamwork.DTO.dog.DogDTO;
-import com.example.teamwork.enums.Disability;
+import com.example.teamwork.constant.Disability;
 import com.example.teamwork.model.Dog;
 import com.example.teamwork.service.dog.DogShelterService;
 import org.junit.jupiter.api.Test;
@@ -13,27 +13,12 @@ import org.springframework.http.ResponseEntity;
 
 import java.util.*;
 
+import static com.example.teamwork.constant.Constant.*;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class DogShelterControllerTest {
-
-	private static final Long ID_1 = 1L;
-	private static final Long ID_2 = 2L;
-	private static final Long ID_3 = 3L;
-	private static final String NAME_1 = "name1";
-	private static final String NAME_2 = "name2";
-	private static final String NAME_3 = "name3";
-	private static final Integer AGE_1 = 1;
-	private static final Integer AGE_2 = 2;
-	private static final Integer AGE_3 = 3;
-	private static final Disability DISABILITY_1 = Disability.MOVEMENT;
-	private static final Disability DISABILITY_2 = Disability.INTERNAL;
-	private static final Disability DISABILITY_3 = Disability.NO;
-	private static final String COMMENTS_1 = "text1";
-	private static final String COMMENTS_2 = "text2";
-	private static final String COMMENTS_3 = "text3";
 
 	@InjectMocks
 	private DogShelterController controller;

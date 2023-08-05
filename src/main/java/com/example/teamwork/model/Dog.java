@@ -1,7 +1,7 @@
 package com.example.teamwork.model;
 
 import com.example.teamwork.DTO.dog.DogDTO;
-import com.example.teamwork.enums.Disability;
+import com.example.teamwork.constant.Disability;
 import lombok.*;
 
 import javax.persistence.*;

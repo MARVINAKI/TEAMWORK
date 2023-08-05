@@ -1,6 +1,6 @@
 package com.example.teamwork.listener;
 
-import com.example.teamwork.enums.Status;
+import com.example.teamwork.constant.Status;
 import com.example.teamwork.handlers.buttonHandlers.TelegramBotButtonHandler;
 import com.example.teamwork.handlers.messageHandlers.MessageWithStatusHandler;
 import com.example.teamwork.handlers.messageHandlers.TelegramBotMessageHandler;

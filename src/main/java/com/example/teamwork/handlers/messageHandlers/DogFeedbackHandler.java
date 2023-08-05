@@ -1,7 +1,6 @@
-package com.example.teamwork.handlers.messageHandlers.dog;
+package com.example.teamwork.handlers.messageHandlers;
 
-import com.example.teamwork.enums.Status;
-import com.example.teamwork.handlers.messageHandlers.MessageWithStatusHandler;
+import com.example.teamwork.constant.Status;
 import com.example.teamwork.model.DogFeedback;
 import com.example.teamwork.service.dog.DogFeedbackService;
 import com.pengrad.telegrambot.TelegramBot;

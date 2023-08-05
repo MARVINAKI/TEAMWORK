@@ -1,6 +1,5 @@
-package com.example.teamwork.handlers.buttonHandlers.dogHandler;
+package com.example.teamwork.handlers.buttonHandlers;
 
-import com.example.teamwork.handlers.buttonHandlers.AbstractTelegramBotButtonHandler;
 import com.example.teamwork.model.Cynologist;
 import com.example.teamwork.service.dog.CynologistService;
 import com.pengrad.telegrambot.TelegramBot;
@@ -16,23 +15,44 @@ import org.springframework.util.ResourceUtils;
 
 import java.io.File;
 
+/**
+ * Обработчик кнопки "Кинологи" в telegram bot приюта для собак
+ * Получение актуальной информации о кинологах, рекомендуемых приютом
+ *
+ * @author Kostya
+ */
 @Component
-public class DogShelterCynologistsHandler extends AbstractTelegramBotButtonHandler {
+public class CynologistsHandler extends AbstractTelegramBotButtonHandler {
 
 	@Value("${documents.file.path}")
 	private String pathToDocs;
 	private final CynologistService cynologistService;
 
-	public DogShelterCynologistsHandler(TelegramBot telegramBot, CynologistService cynologistService) {
+	public CynologistsHandler(TelegramBot telegramBot, CynologistService cynologistService) {
 		super(telegramBot);
 		this.cynologistService = cynologistService;
 	}
 
+	/**
+	 * Проверка на нажатие именно нашей кнопки,
+	 * <b>true</b> если соответсвует и <b>false</b> если нет.
+	 *
+	 * @param update сообщение в telegram bot от пользователя.
+	 * @return <b>true / false</b>
+	 */
 	@Override
 	public boolean checkButton(Update update) {
 		return update.callbackQuery() != null && update.callbackQuery().data().equals("/cynologists");
 	}
 
+	/**
+	 * Реализация нашей кнопки.
+	 * Выдаёт пользователю список рекомендуемых приютом кинологов и
+	 * информацию о них.
+	 * Предлагает пользователю вернуться в предыдущее меню.
+	 *
+	 * @param update сообщение в telegram bot от пользователя.
+	 */
 	@SneakyThrows
 	@Override
 	public void realizationButton(Update update) {

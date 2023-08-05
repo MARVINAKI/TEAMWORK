@@ -1,0 +1,17 @@
+{
+  "message": {
+    "chat": {
+      "id": 9876543210
+    },
+    "from": {
+      "id": 5544332211
+    },
+    "text": "%message_text%",
+    "photo": [
+      {
+        "file_id": "1"
+      }
+    ],
+    "caption": "caption_text"
+  }
+}

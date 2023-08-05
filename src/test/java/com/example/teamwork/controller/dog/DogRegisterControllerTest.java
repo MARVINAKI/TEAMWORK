@@ -1,7 +1,6 @@
 package com.example.teamwork.controller.dog;
 
 import com.example.teamwork.DTO.dog.DogRegisterDTO;
-import com.example.teamwork.enums.Disability;
 import com.example.teamwork.model.Dog;
 import com.example.teamwork.model.DogAdopter;
 import com.example.teamwork.model.DogRegister;
@@ -15,40 +14,19 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.ResponseEntity;
 
-import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
+import static com.example.teamwork.constant.Constant.*;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class DogRegisterControllerTest {
 
-	private static final Long ID_1 = 1L;
-	private static final Long ID_2 = 2L;
-	private static final Long ADOPTERS_CHAT_ID_1 = 112233L;
-	private static final Long ADOPTERS_CHAT_ID_2 = 223344L;
-	private static final Long DOG_ID_1 = 11L;
-	private static final Long DOG_ID_2 = 22L;
-	private static final Long ADOPTER_ID_1 = 111L;
-	private static final Long ADOPTER_ID_2 = 222L;
-	private static final Integer TRIAL_PERIOD_1 = 30;
-	private static final Integer TRIAL_PERIOD_2 = 14;
-	private static final LocalDateTime REGISTRATION_DATE_1 = LocalDateTime.now().truncatedTo(ChronoUnit.DAYS).minusDays(1);
-	private static final LocalDateTime REGISTRATION_DATE_2 = LocalDateTime.now().truncatedTo(ChronoUnit.DAYS);
-	private static final LocalDateTime LAST_DATE_OF_REPORTS_1 = LocalDateTime.now().truncatedTo(ChronoUnit.DAYS);
-	private static final LocalDateTime LAST_DATE_OF_REPORTS_2 = LocalDateTime.now().truncatedTo(ChronoUnit.DAYS);
-	private static final String NAME = "name1";
-	private static final Integer AGE = 1;
-	private static final Disability DISABILITY = Disability.MOVEMENT;
-	private static final String COMMENTS = "text1";
-	private static final Long CHAT_ID = 334455L;
-	private static final String FULL_NAME = "name";
-	private static final String PHONE_NUMBER = "89171112233";
+
 
 
 	@InjectMocks
@@ -117,6 +95,7 @@ class DogRegisterControllerTest {
 
 		verify(dogRegisterService, only()).findByAdoptersChatId(ADOPTERS_CHAT_ID_2);
 
+		assertFalse(responseEntity.getStatusCode().is2xxSuccessful());
 		assertTrue(controller.findByChatId(ADOPTERS_CHAT_ID_2).getStatusCode().is4xxClientError());
 		assertEquals(404, controller.findByChatId(ADOPTERS_CHAT_ID_2).getStatusCodeValue());
 	}

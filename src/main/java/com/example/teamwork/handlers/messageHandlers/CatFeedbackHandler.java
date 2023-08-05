@@ -1,7 +1,6 @@
-package com.example.teamwork.handlers.messageHandlers.cat;
+package com.example.teamwork.handlers.messageHandlers;
 
-import com.example.teamwork.enums.Status;
-import com.example.teamwork.handlers.messageHandlers.MessageWithStatusHandler;
+import com.example.teamwork.constant.Status;
 import com.example.teamwork.model.CatFeedback;
 import com.example.teamwork.service.cat.CatFeedbackService;
 import com.pengrad.telegrambot.TelegramBot;

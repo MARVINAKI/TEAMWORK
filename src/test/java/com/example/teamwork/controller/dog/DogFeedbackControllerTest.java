@@ -13,30 +13,12 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
+import static com.example.teamwork.constant.Constant.*;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class DogFeedbackControllerTest {
-
-	private static final Long ID_1 = 1L;
-	private static final Long ID_2 = 2L;
-	private static final Long ID_3 = 3L;
-	private static final String FULL_NAME_1 = "name1";
-	private static final String FULL_NAME_2 = "name2";
-	private static final String FULL_NAME_3 = "name3";
-	private static final String PHONE_NUMBER_1 = "89171111111";
-	private static final String PHONE_NUMBER_2 = "89172222222";
-	private static final String PHONE_NUMBER_3 = "89173333333";
-	private static final String EMAIL_1 = "email1@mail.ru";
-	private static final String EMAIL_2 = "email2@mail.ru";
-	private static final String EMAIL_3 = "email3@mail.ru";
-	private static final String COMMENTS_1 = "text1";
-	private static final String COMMENTS_2 = "text2";
-	private static final String COMMENTS_3 = "text3";
-	private static final Long VOLUNTEER_ID_1 = 11L;
-	private static final Long VOLUNTEER_ID_2 = 22L;
-	private static final Long VOLUNTEER_ID_3 = 33L;
 
 	@InjectMocks
 	private DogFeedbackController controller;
