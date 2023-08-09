@@ -1,5 +1,6 @@
 package com.example.teamwork.controller.cat;
 
+import com.example.teamwork.DTO.cat.CatDTO;
 import com.example.teamwork.model.Cat;
 import com.example.teamwork.service.cat.CatShelterService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -8,6 +9,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -56,9 +58,15 @@ public class CatShelterController {
 					)
 			})
 	@GetMapping("/id={id}")
-	public ResponseEntity<Cat> findCatById(@PathVariable Long id) {
+	public ResponseEntity<CatDTO> findCatById(@PathVariable Long id) {
 		Optional<Cat> cat = catShelterService.findById(id);
-		return cat.isEmpty() ? ResponseEntity.notFound().header("Error", "Object not found in DB").build() : ResponseEntity.ok(cat.get());
+		return cat.isEmpty() ? ResponseEntity.notFound().header("Error", "Object not found in DB").build() : ResponseEntity.ok(Cat.convert(cat.get()));
+	}
+
+	@Operation(summary = "Поиск всех питомцев в приюте")
+	@GetMapping("/cats")
+	public ResponseEntity<List<CatDTO>> findAllCatsInTheShelter() {
+		return ResponseEntity.ok().body(catShelterService.findAll());
 	}
 
 	@Operation(summary = "Удаление питомца из БД кошачего приюта",

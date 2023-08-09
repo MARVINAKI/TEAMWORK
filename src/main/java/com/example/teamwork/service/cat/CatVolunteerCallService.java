@@ -1,7 +1,7 @@
 package com.example.teamwork.service.cat;
 
 import com.example.teamwork.DTO.cat.CatVolunteerCallDTO;
-import com.example.teamwork.handlers.buttonHandlers.catHandler.CatShelterVolunteerHandler;
+import com.example.teamwork.handlers.buttonHandlers.VolunteerHandler;
 import com.example.teamwork.model.CatVolunteer;
 import com.example.teamwork.model.CatVolunteerCall;
 import com.example.teamwork.repository.cat.CatVolunteerCallRepository;
@@ -26,7 +26,7 @@ public class CatVolunteerCallService {
 	}
 
 	/**
-	 * Метод реализуется в обработчике {@link CatShelterVolunteerHandler} для
+	 * Метод реализуется в обработчике {@link VolunteerHandler} для
 	 * занесения запроса на обратную связь с клиентом в нашу БД. В процессе выполнения, назначается ответственный волонтёр приюта и время
 	 * поступления запроса, который будет обрабатывать постувший запрос. Волонтёр назначается случайным образом из списка доступных волонтёров (выборка волонтёров из БД).
 	 * {@link JpaRepository#findAll()}

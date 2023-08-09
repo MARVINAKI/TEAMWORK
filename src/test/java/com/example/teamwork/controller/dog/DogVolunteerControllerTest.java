@@ -15,18 +15,13 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
+import static com.example.teamwork.constant.Constant.*;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class DogVolunteerControllerTest {
 
-	private static final String FULL_NAME_1 = "Ivanov Ivan";
-	private static final String FULL_NAME_2 = "Petrov Petr";
-	private static final String FULL_NAME_3 = "Sidorov Sidr";
-	private static final Long ID_1 = 11L;
-	private static final Long ID_2 = 22L;
-	private static final Long ID_3 = 33L;
 
 	@InjectMocks
 	private DogVolunteerController dogVolunteerController;

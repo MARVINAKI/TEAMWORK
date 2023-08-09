@@ -1,7 +1,7 @@
 package com.example.teamwork.service.dog;
 
 import com.example.teamwork.DTO.dog.DogFeedbackDTO;
-import com.example.teamwork.handlers.messageHandlers.dog.DogFeedbackHandler;
+import com.example.teamwork.handlers.messageHandlers.DogFeedbackHandler;
 import com.example.teamwork.model.DogFeedback;
 import com.example.teamwork.model.DogVolunteer;
 import com.example.teamwork.repository.dog.DogFeedbackRepository;

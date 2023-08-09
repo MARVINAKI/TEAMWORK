@@ -14,24 +14,12 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
+import static com.example.teamwork.constant.Constant.*;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class CynologistControllerTest {
-
-	private static final Long ID_1 = 1L;
-	private static final Long ID_2 = 2L;
-	private static final String FULL_NAME_1 = "name1";
-	private static final String FULL_NAME_2 = "name2";
-	private static final Integer EXPERIENCE_1 = 11;
-	private static final Integer EXPERIENCE_2 = 22;
-	private static final String PHONE_NUMBER_1 = "89171111111";
-	private static final String PHONE_NUMBER_2 = "89172222222";
-	private static final String EMAIL_1 = "email1@mail.ru";
-	private static final String EMAIL_2 = "email2@mail.ru";
-	private static final String COMMENTS_1 = "text1";
-	private static final String COMMENTS_2 = "text2";
 
 	@InjectMocks
 	private CynologistController controller;
@@ -42,7 +30,7 @@ class CynologistControllerTest {
 	@Test
 	void addCynologist() {
 		controller.addCynologist(FULL_NAME_1, EXPERIENCE_1, PHONE_NUMBER_1, EMAIL_1, COMMENTS_1);
-		verify(service, only()).addCynologist(FULL_NAME_1, EXPERIENCE_1, PHONE_NUMBER_1, EMAIL_2, COMMENTS_2);
+		verify(service, only()).addCynologist(FULL_NAME_1, EXPERIENCE_1, PHONE_NUMBER_1, EMAIL_1, COMMENTS_1);
 	}
 
 	@Test

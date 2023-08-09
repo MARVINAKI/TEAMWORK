@@ -1,7 +1,7 @@
 package com.example.teamwork.service.dog;
 
 import com.example.teamwork.DTO.dog.DogDTO;
-import com.example.teamwork.enums.Disability;
+import com.example.teamwork.constant.Disability;
 import com.example.teamwork.model.Dog;
 import com.example.teamwork.repository.dog.DogShelterRepository;
 import org.springframework.stereotype.Service;

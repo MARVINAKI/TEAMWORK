@@ -1,7 +1,7 @@
 package com.example.teamwork.service.cat;
 
 import com.example.teamwork.DTO.cat.CatDTO;
-import com.example.teamwork.enums.Disability;
+import com.example.teamwork.constant.Disability;
 import com.example.teamwork.model.Cat;
 import com.example.teamwork.repository.cat.CatShelterRepository;
 import org.springframework.stereotype.Service;

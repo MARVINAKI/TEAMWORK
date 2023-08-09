@@ -13,30 +13,17 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.ResponseEntity;
 
-import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
+import static com.example.teamwork.constant.Constant.*;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class ReportControllerTest {
 
-	private static final Long ID_1 = 1L;
-	private static final Long ID_2 = 2L;
-	private static final Long CHAT_ID_1 = 11L;
-	private static final Long CHAT_ID_2 = 22L;
-	private static final String FILE_NAME_1 = "name1";
-	private static final String FILE_NAME_2 = "name2";
-	private static final String DESCRIPTION_1 = "text1";
-	private static final String DESCRIPTION_2 = "text2";
-	private static final LocalDateTime DISPATCH_TIME_1 = LocalDateTime.now().truncatedTo(ChronoUnit.DAYS);
-	private static final LocalDateTime DISPATCH_TIME_2 = LocalDateTime.now().truncatedTo(ChronoUnit.DAYS).minusDays(1);
-	private static final boolean REPORTS_STATUS_1 = true;
-	private static final boolean REPORTS_STATUS_2 = false;
 
 	@InjectMocks
 	private ReportController controller;

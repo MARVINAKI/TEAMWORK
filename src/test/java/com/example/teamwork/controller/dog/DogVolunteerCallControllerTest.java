@@ -11,32 +11,18 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.ResponseEntity;
 
-import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
+import static com.example.teamwork.constant.Constant.*;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class DogVolunteerCallControllerTest {
 
-	private static final Long ID_1 = 1L;
-	private static final Long ID_2 = 2L;
-	private static final Long ID_3 = 3L;
-	private static final Long CHAT_ID_1 = 112233L;
-	private static final Long CHAT_ID_2 = 223344L;
-	private static final Long CHAT_ID_3 = 334455L;
-	private static final LocalDateTime REQUEST_TIME_1 = LocalDateTime.now().truncatedTo(ChronoUnit.DAYS).minusDays(1);
-	private static final LocalDateTime REQUEST_TIME_2 = LocalDateTime.now().truncatedTo(ChronoUnit.DAYS);
-	private static final LocalDateTime REQUEST_TIME_3 = LocalDateTime.now().truncatedTo(ChronoUnit.DAYS).plusDays(1);
-	private static final Long DOG_VOLUNTEER_ID_1 = 11L;
-	private static final Long DOG_VOLUNTEER_ID_2 = 22L;
-	private static final Long DOG_VOLUNTEER_ID_3 = 33L;
-	private static final String FULL_NAME = "Ivanov Ivan";
 
 	@InjectMocks
 	private DogVolunteerCallController controller;

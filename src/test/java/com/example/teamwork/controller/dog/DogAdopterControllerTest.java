@@ -16,24 +16,12 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
+import static com.example.teamwork.constant.Constant.*;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class DogAdopterControllerTest {
-
-	private static final Long ID_1 = 1L;
-	private static final Long ID_2 = 2L;
-	private static final Long ID_3 = 3L;
-	private static final Long CHAT_ID_1 = 11L;
-	private static final Long CHAT_ID_2 = 22L;
-	private static final Long CHAT_ID_3 = 33L;
-	private static final String FULL_NAME_1 = "name1";
-	private static final String FULL_NAME_2 = "name2";
-	private static final String FULL_NAME_3 = "name3";
-	private static final String PHONE_NUMBER_1 = "89171111111";
-	private static final String PHONE_NUMBER_2 = "89172222222";
-	private static final String PHONE_NUMBER_3 = "89173333333";
 
 	@InjectMocks
 	private DogAdopterController controller;

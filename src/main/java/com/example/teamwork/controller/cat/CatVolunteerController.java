@@ -65,9 +65,9 @@ public class CatVolunteerController {
 					)
 			})
 	@GetMapping("/{id}")
-	public ResponseEntity<CatVolunteer> findCatVolunteer(@PathVariable Long id) {
+	public ResponseEntity<CatVolunteerDTO> findCatVolunteer(@PathVariable Long id) {
 		Optional<CatVolunteer> catVolunteer = catVolunteerService.findById(id);
-		return catVolunteer.isEmpty() ? ResponseEntity.notFound().header("Error", "Object not found in DB").build() : ResponseEntity.ok(catVolunteer.get());
+		return catVolunteer.isEmpty() ? ResponseEntity.notFound().header("Error", "Object not found in DB").build() : ResponseEntity.ok(CatVolunteer.convert(catVolunteer.get()));
 	}
 
 	@Operation(summary = "Удаление волонтёра из БД собачего приюта",
