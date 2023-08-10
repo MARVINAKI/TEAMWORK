@@ -3,10 +3,12 @@ package com.example.teamwork.service.cat;
 import com.example.teamwork.DTO.cat.CatRegisterDTO;
 import com.example.teamwork.model.CatRegister;
 import com.example.teamwork.repository.cat.CatRegisterRepository;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -24,14 +26,17 @@ public class CatRegisterService {
 		catRegisterRepository.save(catRegister);
 	}
 
-	public void updateReportsDate(Long chatId, LocalDateTime dateTime) {
-		Optional<CatRegister> catRegister = catRegisterRepository.findByAdoptersChatId(chatId);
-		catRegister.ifPresent(value -> {
-			value.setLastDateOfReports(dateTime.truncatedTo(ChronoUnit.DAYS));
-			catRegisterRepository.saveAndFlush(value);
-		});
-	}
-
+	/**
+	 * Внесение изменений по испытательному сроку волонтёром
+	 *
+	 * @param id - идентификационный номер журнала усыновителя
+	 * @param trialPeriod - количество дней испытательного периода
+	 */
+	@Caching(
+			evict = {@CacheEvict("cat_register")},
+			put = {@CachePut("cat_register")},
+			cacheable = {@Cacheable("cat_register")}
+	)
 	public void updateTrialPeriod(Long id, Integer trialPeriod) {
 		catRegisterRepository.findById(id).ifPresent(value -> {
 			value.setTrialPeriod(trialPeriod);
@@ -47,18 +52,40 @@ public class CatRegisterService {
 		return listDTO;
 	}
 
+	/**
+	 * Поиск журнала усыновителя по идентификационному номеру телеграмм чата усыновителя
+	 *
+	 * @param adopterChatId - идентификационный номер телеграмм чата усыновителя
+	 * @return - журнал усыновителя (если имеется)
+	 */
+	@Cacheable("cat_register")
 	public Optional<CatRegister> findByAdoptersChatId(Long adopterChatId) {
 		return catRegisterRepository.findByAdoptersChatId(adopterChatId);
 	}
 
+	/**
+	 * Поиск журнала усыновителя по идентификационному номеру усыновленного питомца
+	 *
+	 * @param catId - идентификационный номер питомца
+	 * @return - журнал усыновителя (если имеется)
+	 */
+	@Cacheable("cat_register")
 	public Optional<CatRegister> findByCatId(Long catId) {
 		return catRegisterRepository.findByCat_Id(catId);
 	}
 
+	/**
+	 * Поиск журнала усыновителя по идентификационному номеру усыновителя
+	 *
+	 * @param catAdopterId - идентификационный номер усыновителя
+	 * @return - журнал усыновителя (если имеется)
+	 */
+	@Cacheable("cat_register")
 	public Optional<CatRegister> findByCatAdopterId(Long catAdopterId) {
 		return catRegisterRepository.findByCatAdopter_Id(catAdopterId);
 	}
 
+	@CacheEvict("cat_register")
 	public void deleteCatRegister(Long id) {
 		catRegisterRepository.deleteById(id);
 	}

@@ -1,7 +1,7 @@
 package com.example.teamwork.service.dog;
 
 import com.example.teamwork.DTO.dog.DogFeedbackDTO;
-import com.example.teamwork.handlers.messageHandlers.DogFeedbackHandler;
+import com.example.teamwork.handlers.buttonHandlers.FeedbackHandler;
 import com.example.teamwork.model.DogFeedback;
 import com.example.teamwork.model.DogVolunteer;
 import com.example.teamwork.repository.dog.DogFeedbackRepository;
@@ -26,7 +26,7 @@ public class DogFeedbackService {
 	}
 
 	/**
-	 * Метод реализуется в обработчике {@link DogFeedbackHandler} для
+	 * Метод реализуется в обработчике {@link FeedbackHandler} для
 	 * занесения запроса на обратную связь с клиентом в нашу БД. В процессе выполнения, назначается ответственный волонтёр приюта и время поступления запроса,
 	 * который будет обрабатывать постувший запрос. Волонтёр назначается случайным образом из списка доступных волонтёров (выборка волонтёров из БД).
 	 * {@link JpaRepository#findAll()}
