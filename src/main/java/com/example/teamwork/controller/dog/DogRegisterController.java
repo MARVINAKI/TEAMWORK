@@ -14,6 +14,16 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Контроллер предназначен для сотрудников приюта.
+ * Реализованы возможности:
+ * заведение нового журнала об усыновлении,
+ * поиск информации по журналам,
+ * изменение испытательного срока,
+ * удаление журналов.
+ *
+ * @author Kostya
+ */
 @RestController
 @RequestMapping("/dog_register")
 public class DogRegisterController {

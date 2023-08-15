@@ -23,7 +23,7 @@ public class CatAdopterService {
 	}
 
 	public Optional<CatAdopter> findByFullName(String fullName) {
-		return catAdopterRepository.findCatAdopterByFullName(fullName);
+		return catAdopterRepository.findFirstByFullName(fullName);
 	}
 
 	public Optional<CatAdopter> findById(Long id) {

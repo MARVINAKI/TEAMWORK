@@ -59,12 +59,13 @@ public class CynologistsHandler extends AbstractTelegramBotButtonHandler {
 		File file = ResourceUtils.getFile(pathToDocs + "Рекомендации_кинолога.docx");
 		StringBuilder cynologists = new StringBuilder("\n");
 		for (Cynologist cynologist : cynologistService.findAll()) {
-			cynologists.append("\n" + "ФИО: ")
-					.append(cynologist.getFullName()).append("\n").append("Опыт работы: ")
-					.append(cynologist.getExperience()).append("\n").append("Номер телефона: ")
-					.append(cynologist.getPhoneNumber()).append("\n").append("Электронная почта: ")
-					.append(cynologist.getEMail()).append("\n").append("Комментарии: ")
-					.append(cynologist.getComments()).append("\n -----------------------------------------");
+			cynologists
+					.append("\n" + "ФИО: ").append(cynologist.getFullName())
+					.append("\n").append("Опыт работы: ").append(cynologist.getExperience())
+					.append("\n").append("Номер телефона: ").append(cynologist.getPhoneNumber())
+					.append("\n").append("Электронная почта: ").append(cynologist.getEMail())
+					.append("\n").append("Комментарии: ").append(cynologist.getComments())
+					.append("\n -----------------------------------------");
 		}
 		InlineKeyboardMarkup keyboardMarkup = new InlineKeyboardMarkup();
 		keyboardMarkup.addRow(

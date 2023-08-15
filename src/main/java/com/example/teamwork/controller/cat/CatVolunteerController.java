@@ -11,6 +11,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Контроллер предназначен для сотрудников приюта.
+ * Возможность добавить, найти или удалить волонтёра в/из БД кошачьего приюта.
+ *
+ * @author Kostya
+ */
 @RestController
 @RequestMapping("/catVolunteer")
 public class CatVolunteerController {

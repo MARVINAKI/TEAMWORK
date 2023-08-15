@@ -9,6 +9,13 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * Контроллер предназначен для сотрудников приюта.
+ * Возможность просмотреть открытые запросы по шаблону "Обратная связь" и
+ * закрыть запрос, если он обработан волонтёром
+ *
+ * @author Kostya
+ */
 @RestController
 @RequestMapping("/catFeedback")
 public class CatFeedbackController {

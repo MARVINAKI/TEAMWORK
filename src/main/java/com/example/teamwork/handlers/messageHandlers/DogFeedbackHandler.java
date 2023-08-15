@@ -5,6 +5,8 @@ import com.example.teamwork.model.DogFeedback;
 import com.example.teamwork.service.dog.DogFeedbackService;
 import com.pengrad.telegrambot.TelegramBot;
 import com.pengrad.telegrambot.model.Update;
+import com.pengrad.telegrambot.model.request.InlineKeyboardButton;
+import com.pengrad.telegrambot.model.request.InlineKeyboardMarkup;
 import com.pengrad.telegrambot.request.SendMessage;
 import org.springframework.stereotype.Component;
 
@@ -12,6 +14,11 @@ import java.time.LocalDateTime;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Обработчик обратной связи в собачем приюте
+ *
+ * @author Kostya
+ */
 @Component
 public class DogFeedbackHandler implements MessageWithStatusHandler {
 
@@ -33,15 +40,25 @@ public class DogFeedbackHandler implements MessageWithStatusHandler {
 		this.dogFeedbackService = dogFeedbackService;
 	}
 
+	/**
+	 * Проверка принадлежности к приюту
+	 *
+	 * @param update сообщение пользователя
+	 * @param status статус принадлежности
+	 * @return <b>true / false</b>
+	 */
 	@Override
 	public boolean checkMessage(Update update, Status status) {
-		if (update.message() != null && status.getDescription().equals("/dogShelterFeedback")) {
-			Matcher matcher = pattern.matcher(update.message().text());
-			return matcher.find();
-		}
-		return false;
+		return update.message() != null && status.getDescription().equals("/dogShelterFeedback");
 	}
 
+	/**
+	 * Реализация подразумевает проверку соответсвия нашему шаблону и
+	 * ответ о принятии или отказе.
+	 * При соответствии информация добавляется в нашу БД для дальнейшей обработки волонтёром приюта
+	 *
+	 * @param update сообщение пользователя
+	 */
 	@Override
 	public void realizationMessage(Update update) {
 		Matcher matcher = pattern.matcher(update.message().text());
@@ -57,7 +74,9 @@ public class DogFeedbackHandler implements MessageWithStatusHandler {
 			SendMessage sendMessage = new SendMessage(update.message().chat().id(), "Ваш запрос принят, ожидайте звонка или сообщения...гав!");
 			this.telegramBot.execute(sendMessage);
 		} else {
-			this.telegramBot.execute(new SendMessage(update.message().chat().id(), "Неверный формат сообщения (Пример: ФИО Телефон Почта Комментарий)...гав!"));
+			InlineKeyboardMarkup keyboardMarkup = new InlineKeyboardMarkup();
+			keyboardMarkup.addRow(new InlineKeyboardButton("Попробовать снова").callbackData("/dogShelterFeedback"));
+			this.telegramBot.execute(new SendMessage(update.message().chat().id(), "Неверный формат сообщения (Пример: ФИО Телефон Почта Комментарий)...гав!").replyMarkup(keyboardMarkup));
 		}
 	}
 }
