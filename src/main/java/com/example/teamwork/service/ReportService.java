@@ -3,6 +3,10 @@ package com.example.teamwork.service;
 import com.example.teamwork.DTO.ReportDTO;
 import com.example.teamwork.model.Report;
 import com.example.teamwork.repository.ReportRepository;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -22,9 +26,14 @@ public class ReportService {
 		reportRepository.save(report);
 	}
 
+
+	@Caching(
+			evict = {@CacheEvict("reports")},
+			put = {@CachePut(value = "reports")},
+			cacheable = {@Cacheable("reports")}
+	)
 	public void updateStatus(Long id, Boolean status) {
-		Optional<Report> report = findById(id);
-		report.ifPresent(value -> {
+		findById(id).ifPresent(value -> {
 			value.setReportsStatus(status);
 			reportRepository.saveAndFlush(value);
 		});
@@ -38,10 +47,12 @@ public class ReportService {
 		return listDTO;
 	}
 
+	@Cacheable(value = "reports")
 	public Optional<Report> findById(Long id) {
 		return reportRepository.findById(id);
 	}
 
+	@CacheEvict("reports")
 	public void deleteReport(Long id) {
 		reportRepository.deleteById(id);
 	}
