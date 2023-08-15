@@ -7,6 +7,11 @@ import com.pengrad.telegrambot.model.request.InlineKeyboardMarkup;
 import com.pengrad.telegrambot.request.SendMessage;
 import org.springframework.stereotype.Component;
 
+/**
+ * Стартовый обработчик
+ *
+ * @author Kostya
+ */
 @Component
 public class StartHandler extends AbstractTelegramBotMessageHandler {
 
@@ -14,11 +19,24 @@ public class StartHandler extends AbstractTelegramBotMessageHandler {
 		super(telegramBot);
 	}
 
+	/**
+	 * Проверка на соответсвие
+	 *
+	 * @param update сообщение пользователя
+	 * @return <b>true / false</b>
+	 */
 	@Override
 	public boolean checkMessage(Update update) {
 		return update.message() != null && "/start".equalsIgnoreCase(update.message().text());
 	}
 
+	/**
+	 * Реализация обработчика.
+	 * Отправка пользователю приветсвенного сообщения
+	 * и предоставления выбора приюта.
+	 *
+	 * @param update сообщение пользователя
+	 */
 	@Override
 	public void realizationMessage(Update update) {
 		String information = """

@@ -10,6 +10,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Контроллер предназначен для сотрудников приюта.
+ * Возможность добавления, удалении и просмотра информации
+ * об усыновителях
+ *
+ * @author Kostya
+ */
 @RestController
 @RequestMapping("/cat_adopters")
 public class CatAdopterController {
@@ -21,7 +28,7 @@ public class CatAdopterController {
 	}
 
 	@Operation(summary = "Добавить усыновителя для кошачьего приюта")
-	@PostMapping("/chat_id={chatId}/full_name={fullName}/phone_number{phoneNumber}")
+	@PostMapping("/chat_id={chatId}/full_name={fullName}/phone_number={phoneNumber}")
 	public ResponseEntity<Void> addCatAdopter(@PathVariable Long chatId,
 											  @PathVariable String fullName,
 											  @PathVariable String phoneNumber) {

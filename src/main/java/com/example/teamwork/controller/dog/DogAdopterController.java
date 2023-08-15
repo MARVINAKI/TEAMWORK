@@ -10,6 +10,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Контроллер предназначен для сотрудников приюта.
+ * Возможность добавления, удалении и просмотра информации
+ * об усыновителях
+ *
+ * @author Kostya
+ */
 @RestController
 @RequestMapping("/dog_adopters")
 public class DogAdopterController {

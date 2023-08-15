@@ -9,5 +9,5 @@ import java.util.Optional;
 @Repository
 public interface CatAdopterRepository extends JpaRepository<CatAdopter, Long> {
 
-	Optional<CatAdopter> findCatAdopterByFullName(String fullName);
+	Optional<CatAdopter> findFirstByFullName(String fullName);
 }

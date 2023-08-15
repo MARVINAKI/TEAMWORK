@@ -15,6 +15,13 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Контроллер предназначен для проверки присланных отчётов
+ * о жизни питомца у усыновителя, принятия или отказа в отчёте,
+ * удаление отчётов
+ *
+ * @author Kostya
+ */
 @RestController
 @RequestMapping("/report")
 public class ReportController {

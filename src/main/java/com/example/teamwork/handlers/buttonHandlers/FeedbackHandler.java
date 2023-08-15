@@ -10,7 +10,6 @@ import org.springframework.stereotype.Component;
 /**
  * Обработчик кнопки "Обратная связь" в telegram bot приюта.
  *
- *
  * @author Kostya
  */
 @Component

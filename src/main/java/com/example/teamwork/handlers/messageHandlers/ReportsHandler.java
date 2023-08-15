@@ -21,7 +21,11 @@ import java.nio.file.Path;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 
-
+/**
+ * Обработчик сообщения с отчётом
+ *
+ * @author Kostya
+ */
 @Component
 public class ReportsHandler implements MessageWithStatusHandler {
 
@@ -36,6 +40,13 @@ public class ReportsHandler implements MessageWithStatusHandler {
 		this.reportService = reportService;
 	}
 
+	/**
+	 * Проверка принадлежности к приюту
+	 *
+	 * @param update сообщение пользователя
+	 * @param status статус принадлежности
+	 * @return <b>true / false</b>
+	 */
 	@Override
 	public boolean checkMessage(Update update, Status status) {
 		if (update.message() != null && status.getDescription().equals("/dogShelterGetReport")) {
@@ -49,6 +60,15 @@ public class ReportsHandler implements MessageWithStatusHandler {
 		return false;
 	}
 
+
+	/**
+	 * Реализация приёма отчёта.
+	 * Проверка отчёта на соответсвие рекомендациям.
+	 * Обработка сообщения и добавление отчёта в БД, для дальнейшей проверки.
+	 * Может быть указана причина о некорректности присланных данных.
+	 *
+	 * @param update сообщение пользователя
+	 */
 	@SneakyThrows
 	@Override
 	public void realizationMessage(Update update) {
